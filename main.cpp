@@ -1,8 +1,6 @@
 #include <iostream>
 #include "exprtk.hpp"
 
-#define RESOLUTION 512
-
 using namespace std;
 
 typedef exprtk::symbol_table<double> Symbols;
@@ -10,7 +8,7 @@ typedef exprtk::expression<double> Expression;
 typedef exprtk::parser<double> Parser;
 
 void compute() {
-    string expression_string = "x + 2";
+    string expression_string = "x^2+6x";
     double x;
 
     Symbols symbol_table;
@@ -23,10 +21,27 @@ void compute() {
     Parser parser;
     parser.compile(expression_string,expression);
 
-    for (x = double(-5); x <= double(+5); x += double(1)) {
-        double y = expression.value();
-        cout << "X: " << x << "\tY: " << y << endl;
+    double from = 0;
+    double to = 2;
+    double resolution = 500;
+    double delta = (to-from)/resolution;
+    double out = 0;
+
+    for (x = from; x <= to-delta; x += delta) {
+        out += expression.value()*delta;
     }
+
+    cout << "Result A: " << out << endl;
+
+    out = 0;
+
+    for (x = from; x <= to-delta; ) {
+        double temp = expression.value();
+        x += delta;
+        out += (temp+expression.value())*delta/2;
+    }
+
+    cout << "Result B: " << out << endl;
 }
 
 int main() {
