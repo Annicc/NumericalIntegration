@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "exprtk.hpp"
 
 using namespace std;
@@ -8,8 +9,22 @@ typedef exprtk::expression<double> Expression;
 typedef exprtk::parser<double> Parser;
 
 void compute() {
-    string expression_string = "x^2+6x";
-    double x;
+
+    double from, to, x;
+    int resolution;
+    string expression_string;
+
+    cout << setprecision(9) << fixed;
+
+    cout << "Funzione: ";
+    cin >> expression_string;
+    cout << "Inizio dell'intervallo di derivazione: ";
+    cin >> from;
+    cout << "Fine dell'intervallo di derivazione: ";
+    cin >> to;
+    cout << "Risoluzione calcolo dell'integrale: ";
+    cin >> resolution;
+
 
     Symbols symbol_table;
     symbol_table.add_variable("x",x);
@@ -21,27 +36,27 @@ void compute() {
     Parser parser;
     parser.compile(expression_string,expression);
 
-    double from = 0;
-    double to = 2;
-    double resolution = 500;
     double delta = (to-from)/resolution;
     double out = 0;
 
-    for (x = from; x <= to-delta; x += delta) {
-        out += expression.value()*delta;
+    for (int i = 0; i < resolution; ++i) {
+        x = from + (delta * i);
+        out += expression.value() * delta;
     }
 
-    cout << "Result A: " << out << endl;
+    cout << "Risultato metodo dei rettangoli:\t" << out << endl;
 
     out = 0;
 
-    for (x = from; x <= to-delta; ) {
+    for (int i = 0; i < resolution; ++i) {
+        x = from + (delta * i);
         double temp = expression.value();
-        x += delta;
+        x = from + (delta * (i + 1));
         out += (temp+expression.value())*delta/2;
     }
 
-    cout << "Result B: " << out << endl;
+    cout << "Risultato metodo dei trapezioidi:\t" << out << endl;
+
 }
 
 int main() {
