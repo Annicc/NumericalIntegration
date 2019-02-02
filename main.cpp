@@ -57,6 +57,21 @@ void compute() {
 
     cout << "Risultato metodo dei trapezioidi:\t" << out << endl;
 
+    out = 0;
+
+    for (int i = 1; i <= resolution/2; ++i) {
+        x = from + (2 * i - 2) * delta;
+        out += expression.value();
+        x = from + (2 * i - 1) * delta;
+        out += 4*expression.value();
+        x = from + 2 * i * delta;
+        out += expression.value();
+    }
+
+    out *= delta/3;
+
+    cout << "Risultato metodo di Simpson:\t\t" << out << endl;
+
 }
 
 int main() {
