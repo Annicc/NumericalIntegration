@@ -1,81 +1,14 @@
-#include <iostream>
-#include <iomanip>
-#include "exprtk.hpp"
+#include <QApplication>
+#include "mainwindow.h"
 
-using namespace std;
+const QString ApplicationTitle = "Numerical Integration";
 
-typedef exprtk::symbol_table<double> Symbols;
-typedef exprtk::expression<double> Expression;
-typedef exprtk::parser<double> Parser;
+int main(int argc, char *argv[]) {
+    QApplication a(argc, argv);
+    QCoreApplication::setApplicationName(ApplicationTitle);;
 
-void compute() {
+    MainWindow w;
+    w.show();
 
-    double from, to, x;
-    int resolution;
-    string expression_string;
-
-    cout << setprecision(9) << fixed;
-
-    cout << "Funzione: ";
-    cin >> expression_string;
-    cout << "Inizio dell'intervallo di derivazione: ";
-    cin >> from;
-    cout << "Fine dell'intervallo di derivazione: ";
-    cin >> to;
-    cout << "Risoluzione calcolo dell'integrale: ";
-    cin >> resolution;
-
-
-    Symbols symbol_table;
-    symbol_table.add_variable("x",x);
-    symbol_table.add_constants();
-
-    Expression expression;
-    expression.register_symbol_table(symbol_table);
-
-    Parser parser;
-    parser.compile(expression_string,expression);
-
-    double delta = (to-from)/resolution;
-    double out = 0;
-
-    for (int i = 0; i < resolution; ++i) {
-        x = from + (delta * i);
-        out += expression.value() * delta;
-    }
-
-    cout << "Risultato metodo dei rettangoli:\t" << out << endl;
-
-    out = 0;
-
-    for (int i = 0; i < resolution; ++i) {
-        x = from + (delta * i);
-        double temp = expression.value();
-        x = from + (delta * (i + 1));
-        out += (temp+expression.value())*delta/2;
-    }
-
-    cout << "Risultato metodo dei trapezioidi:\t" << out << endl;
-
-    out = 0;
-
-    for (int i = 1; i <= resolution/2; ++i) {
-        x = from + (2 * i - 2) * delta;
-        out += expression.value();
-        x = from + (2 * i - 1) * delta;
-        out += 4*expression.value();
-        x = from + 2 * i * delta;
-        out += expression.value();
-    }
-
-    out *= delta/3;
-
-    cout << "Risultato metodo di Simpson:\t\t" << out << endl;
-
+    return a.exec();
 }
-
-int main() {
-    compute();
-    return 0;
-}
-
