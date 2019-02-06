@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     runButton = ui->RunButton;
     resetButton = ui->ResetButton;
+    inputText = ui->expressionInput;
 
     connect(runButton, SIGNAL(clicked()), this, SLOT(onRunButtonPressed()));
     connect(resetButton, SIGNAL(clicked()), this,SLOT(onResetButtonPressed()));
