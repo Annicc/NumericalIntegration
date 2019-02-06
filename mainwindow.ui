@@ -6,110 +6,204 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>519</width>
-    <height>244</height>
+    <width>619</width>
+    <height>444</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QLabel" name="integral">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>520</width>
-      <height>223</height>
+      <x>11</x>
+      <y>48</y>
+      <width>36</width>
+      <height>52</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="1" column="0" colspan="2">
-      <widget class="QTextEdit" name="expressionInput">
-       <property name="verticalScrollBarPolicy">
-        <enum>Qt::ScrollBarAsNeeded</enum>
+    <property name="font">
+     <font>
+      <pointsize>32</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>∫ </string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="upperLimit">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>40</y>
+      <width>50</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>50</width>
+      <height>15</height>
+     </size>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAsNeeded</enum>
+    </property>
+   </widget>
+   <widget class="QChartView" name="ChartView">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>20</y>
+      <width>391</width>
+      <height>391</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="lowerLimit">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>100</y>
+      <width>50</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>50</width>
+      <height>15</height>
+     </size>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAsNeeded</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>109</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Insert expression here</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="RunButton">
+    <property name="geometry">
+     <rect>
+      <x>91</x>
+      <y>224</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Run</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ResetButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>224</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Reset</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>130</y>
+      <width>114</width>
+      <height>88</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QCheckBox" name="checkExpression">
+       <property name="text">
+        <string>Display Expression</string>
        </property>
-       <property name="sizeAdjustPolicy">
-        <enum>QAbstractScrollArea::AdjustToContents</enum>
+       <property name="checked">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="1" column="2" rowspan="3">
-      <widget class="QChartView" name="ChartView"/>
-     </item>
-     <item row="2" column="0">
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QCheckBox" name="checkExpression">
-         <property name="text">
-          <string>Display Expression</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkTrapezi">
-         <property name="text">
-          <string>Display Trapezi</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkRettangoli">
-         <property name="text">
-          <string>Display Rettangoli</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkSimpson">
-         <property name="text">
-          <string>Display Simpson</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="3" column="1">
-      <widget class="QPushButton" name="RunButton">
+     <item>
+      <widget class="QCheckBox" name="checkTrapezi">
        <property name="text">
-        <string>Run</string>
+        <string>Display Trapezi</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="3" column="0">
-      <widget class="QPushButton" name="ResetButton">
+     <item>
+      <widget class="QCheckBox" name="checkRettangoli">
        <property name="text">
-        <string>Reset</string>
+        <string>Display Rettangoli</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label">
+     <item>
+      <widget class="QCheckBox" name="checkSimpson">
        <property name="text">
-        <string>Insert expression here</string>
+        <string>Display Simpson</string>
        </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>TextLabel</string>
+       <property name="checked">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QTextEdit" name="expressionInput">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>70</y>
+      <width>100</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>100</width>
+      <height>20</height>
+     </size>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::AdjustToContents</enum>
+    </property>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -124,22 +218,6 @@
  <resources/>
  <connections>
   <connection>
-   <sender>RunButton</sender>
-   <signal>clicked()</signal>
-   <receiver>expressionInput</receiver>
-   <slot>copy()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>156</x>
-     <y>204</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>161</x>
-     <y>70</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>ResetButton</sender>
    <signal>clicked()</signal>
    <receiver>expressionInput</receiver>
@@ -152,6 +230,22 @@
     <hint type="destinationlabel">
      <x>116</x>
      <y>71</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>RunButton</sender>
+   <signal>clicked()</signal>
+   <receiver>expressionInput</receiver>
+   <slot>copy()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>156</x>
+     <y>204</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>161</x>
+     <y>70</y>
     </hint>
    </hints>
   </connection>
