@@ -69,6 +69,9 @@
       <height>391</height>
      </rect>
     </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+    </property>
    </widget>
    <widget class="QTextEdit" name="lowerLimit">
     <property name="geometry">
@@ -131,7 +134,7 @@
      <string>Reset</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -152,9 +155,9 @@
       </widget>
      </item>
      <item>
-      <widget class="QCheckBox" name="checkTrapezi">
+      <widget class="QCheckBox" name="checkTrapezoidi">
        <property name="text">
-        <string>Display Trapezi</string>
+        <string>Display Trapezoidi</string>
        </property>
        <property name="checked">
         <bool>true</bool>

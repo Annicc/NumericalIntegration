@@ -15,16 +15,25 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-private:
-    Ui::MainWindow *ui;
-    NumericalIntegration *ni;
-    QTextEdit *inputText;
-    QChartView *chartView;
-    QPushButton *runButton;
-    QPushButton *resetButton;
 private slots:
     void onRunButtonPressed();
     void onResetButtonPressed();
+private:
+    Ui::MainWindow *ui;
+    NumericalIntegration *ni;
+
+    QTextEdit *inputExpression;
+    QTextEdit *upperLimit;
+    QTextEdit *lowerLimit;
+
+    QCheckBox *cbExpression;
+    QCheckBox *cbRettangoli;
+    QCheckBox *cbTrapezoidi;
+    QCheckBox *cbSimpson;
+
+    QChartView *chartView;
+    QPushButton *runButton;
+    QPushButton *resetButton;
 
 };
 
