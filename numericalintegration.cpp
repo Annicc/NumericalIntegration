@@ -1,22 +1,19 @@
 #include "numericalintegration.h"
 
-NumericalIntegration::NumericalIntegration(QString title)
-{
+NumericalIntegration::NumericalIntegration(QString title) {
     chart = new QChart();
     chart->setTitle(title);
 
 }
 
-void NumericalIntegration::computeGraphs(bool expression, bool rettangoli, bool trapezoidi, bool Simpson)
-{
+void NumericalIntegration::computeGraphs(bool expression, bool rettangoli, bool trapezoidi, bool Simpson) {
     if(expression) graphExpression();
     if(rettangoli) graphRettangoli();
     if(trapezoidi) graphTrapezoidi();
     if(Simpson) graphSimpson();
 }
 
-void NumericalIntegration::graphExpression()
-{
+void NumericalIntegration::graphExpression() {
     x = from;
     QSplineSeries *graph = new QSplineSeries();
     graph->setName("Funzione");
@@ -27,8 +24,7 @@ void NumericalIntegration::graphExpression()
     chart->addSeries(graph);
 }
 
-void NumericalIntegration::graphRettangoli()
-{
+void NumericalIntegration::graphRettangoli() {
     x = from;
     QLineSeries *rect = new QLineSeries();
     rect->setName("Rettangoli");
@@ -41,8 +37,7 @@ void NumericalIntegration::graphRettangoli()
     chart->addSeries(rect);
 }
 
-void NumericalIntegration::graphTrapezoidi()
-{
+void NumericalIntegration::graphTrapezoidi() {
     out = 0;
     x = from;
     QLineSeries *trap = new QLineSeries();
@@ -57,8 +52,7 @@ void NumericalIntegration::graphTrapezoidi()
     chart->addSeries(trap);
 }
 
-void NumericalIntegration::graphSimpson()
-{
+void NumericalIntegration::graphSimpson() {
     out = 0;
     for (int i = 1; i <= resolution/2; ++i) {
         x = from + (2 * i - 2) * delta;
@@ -72,15 +66,13 @@ void NumericalIntegration::graphSimpson()
     out *= delta/3;
 }
 
-QChart* NumericalIntegration::getChart()
-{
+QChart* NumericalIntegration::getChart() {
     chart->createDefaultAxes();
     return chart;
 }
 
 
-void NumericalIntegration::setExpression(std::string in)
-{
+void NumericalIntegration::setExpression(std::string in) {
     expression_string = in;
 }
 

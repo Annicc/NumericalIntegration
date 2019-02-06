@@ -1,10 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
-{
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
     ni = new NumericalIntegration("sadfca");
 
@@ -26,13 +23,11 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowTitle(QCoreApplication::applicationName());
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow() {
     delete ui;
 }
 
-void MainWindow::onRunButtonPressed()
-{
+void MainWindow::onRunButtonPressed() {
     // todo move ni to main.cpp
     QString expression;
     expression = inputExpression->toPlainText();
@@ -48,8 +43,7 @@ void MainWindow::onRunButtonPressed()
     //resize to content
 }
 
-void MainWindow::onResetButtonPressed()
-{
+void MainWindow::onResetButtonPressed() {
     // todo fix this
     inputExpression->clear();
     upperLimit->clear();

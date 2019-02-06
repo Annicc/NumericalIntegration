@@ -13,8 +13,7 @@ typedef exprtk::symbol_table<double> Symbols;
 typedef exprtk::expression<double> Expression;
 typedef exprtk::parser<double> Parser;
 
-class NumericalIntegration
-{
+class NumericalIntegration {
 public:
     /*
      * @param title chart title
