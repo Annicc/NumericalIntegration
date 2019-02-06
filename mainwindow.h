@@ -18,12 +18,16 @@ private slots:
     void onRunButtonPressed();
     void onResetButtonPressed();
 private:
+    QString resultBuilder();
+
     Ui::MainWindow *ui;
     NumericalIntegration *ni;
 
-    QTextEdit *inputExpression;
-    QTextEdit *upperLimit;
-    QTextEdit *lowerLimit;
+    QLineEdit *inputExpression;
+    QLineEdit *upperLimit;
+    QLineEdit *lowerLimit;
+
+    QTextEdit *resultDisplay;
 
     QCheckBox *cbExpression;
     QCheckBox *cbRettangoli;

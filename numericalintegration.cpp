@@ -94,3 +94,19 @@ void NumericalIntegration::buildExpression() {
     expression.register_symbol_table(symbol_table);
     parser.compile(expression_string,expression);
 }
+
+std::string NumericalIntegration::getExpression(){
+    return expression_string;
+}
+
+double NumericalIntegration::getFrom(){
+    return from;
+}
+
+double NumericalIntegration::getTo(){
+    return to;
+}
+
+double NumericalIntegration::getOut(){
+    return out;
+}

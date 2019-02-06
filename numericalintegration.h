@@ -46,6 +46,11 @@ public:
 
     void buildExpression();
 
+    std::string getExpression();
+    double getFrom();
+    double getTo();
+    double getOut(); // lol nice name, temp tho
+
 private:
     /*
      * Creates base expression graph.
