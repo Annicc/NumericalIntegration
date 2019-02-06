@@ -1,13 +1,10 @@
 #include "numericalintegration.h"
 
-NumericalIntegration::NumericalIntegration()
+NumericalIntegration::NumericalIntegration(QString title)
 {
 
     chart = new QChart();
-    chart->createDefaultAxes();
-    chart->axes(Qt::Horizontal).first()->setRange(-1.2, 1.2);
-    chart->axes(Qt::Vertical).first()->setRange(-1.2, 1.2);
-    chart->setTitle("Simple line chart example");
+    chart->setTitle(title);
 
     // vars meme
     from = -1;
@@ -88,14 +85,14 @@ void NumericalIntegration::graphSimpson()
 
     out *= delta/3;
 }
-/*
-QChart NumericalIntegration::getChart()
+
+QChart* NumericalIntegration::getChart()
 {
     return chart;
 }
-*/
 
-void NumericalIntegration::setExpression(Expression in)
+
+void NumericalIntegration::setExpression(std::string in)
 {
-    expression = in;
+    expression_string = in;
 }

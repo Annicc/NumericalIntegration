@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ni = new NumericalIntegration();
+    ni = new NumericalIntegration("sadfca");
 
     runButton = ui->RunButton;
     resetButton = ui->ResetButton;
@@ -24,10 +24,15 @@ MainWindow::~MainWindow()
 
 void MainWindow::onRunButtonPressed()
 {
-    //Expression expression = inputText->toPlainText();
-    //ni->setExpression(expression);
-    // do math
-    //chartView->setChart();
+    // todo move ni to main.cpp
+    QString expression;
+    expression = inputText->toPlainText();
+    std::string stdstring = expression.toUtf8().constData();
+    ni->setExpression(stdstring);
+    //ni->parseExpression();
+    ni->computeGraphs(true, true, true, false);
+
+    chartView->setChart(ni->getChart());
 }
 
 void MainWindow::onResetButtonPressed()

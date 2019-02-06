@@ -20,12 +20,10 @@ QMAKE_CXXFLAGS += -bigobj
 SOURCES += \
         main.cpp \
     mainwindow.cpp \
-    mainwindow.cpp \
     numericalintegration.cpp
 
 HEADERS += \
     exprtk.hpp \
-    mainwindow.h \
     mainwindow.h \
     numericalintegration.h
 
