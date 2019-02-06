@@ -43,6 +43,10 @@ public:
      */
     void setExpression(std::string in);
 
+    void setInterval(int from, int to);
+
+    void buildExpression();
+
 private:
     /*
      * Creates base expression graph.

@@ -11,6 +11,9 @@ MainWindow::MainWindow(QWidget *parent) :
     runButton = ui->RunButton;
     resetButton = ui->ResetButton;
 
+    connect(runButton, SIGNAL(clicked()), this, SLOT(onRunButtonPressed()));
+    connect(resetButton, SIGNAL(clicked()), this,SLOT(onResetButtonPressed()));
+
     chartView = ui->ChartView;
     chartView->setRenderHint(QPainter::Antialiasing);
 
@@ -29,10 +32,12 @@ void MainWindow::onRunButtonPressed()
     expression = inputText->toPlainText();
     std::string stdstring = expression.toUtf8().constData();
     ni->setExpression(stdstring);
-    //ni->parseExpression();
+    ni->setInterval(-1,1);
+    ni->buildExpression();
     ni->computeGraphs(true, true, true, false);
 
     chartView->setChart(ni->getChart());
+    chartView->update();
 }
 
 void MainWindow::onResetButtonPressed()

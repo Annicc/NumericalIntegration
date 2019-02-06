@@ -15,8 +15,6 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void onRunButtonPressed();
-    void onResetButtonPressed();
 private:
     Ui::MainWindow *ui;
     NumericalIntegration *ni;
@@ -24,6 +22,10 @@ private:
     QChartView *chartView;
     QPushButton *runButton;
     QPushButton *resetButton;
+private slots:
+    void onRunButtonPressed();
+    void onResetButtonPressed();
+
 };
 
 #endif // MAINWINDOW_H

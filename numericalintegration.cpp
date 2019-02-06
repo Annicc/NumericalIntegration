@@ -2,23 +2,9 @@
 
 NumericalIntegration::NumericalIntegration(QString title)
 {
-
     chart = new QChart();
     chart->setTitle(title);
 
-    // vars meme
-    from = -1;
-    to = 1;
-    resolution = 10;
-    gresolution = 100;
-    delta = (to-from)/resolution;
-    gdelta = (to-from)/gresolution;
-    out = 0;
-
-    symbol_table.add_variable("x",x);
-    symbol_table.add_constants();
-    expression.register_symbol_table(symbol_table);
-    parser.compile(expression_string,expression);
 }
 
 void NumericalIntegration::computeGraphs(bool expression, bool rettangoli, bool trapezoidi, bool Simpson)
@@ -88,6 +74,7 @@ void NumericalIntegration::graphSimpson()
 
 QChart* NumericalIntegration::getChart()
 {
+    chart->createDefaultAxes();
     return chart;
 }
 
@@ -95,4 +82,23 @@ QChart* NumericalIntegration::getChart()
 void NumericalIntegration::setExpression(std::string in)
 {
     expression_string = in;
+}
+
+void NumericalIntegration::setInterval(int from, int to) {
+    this->from = from;
+    this->to = to;
+}
+
+void NumericalIntegration::buildExpression() {
+    // vars meme
+    resolution = 10;
+    gresolution = 100;
+    delta = (to-from)/resolution;
+    gdelta = (to-from)/gresolution;
+    out = 0;
+
+    symbol_table.add_variable("x",x);
+    symbol_table.add_constants();
+    expression.register_symbol_table(symbol_table);
+    parser.compile(expression_string,expression);
 }
