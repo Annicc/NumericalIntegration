@@ -107,6 +107,7 @@ void MainWindow::onAboutButtonPressed(){
                    "    Marco Fincato<br></p>"
                    "<p><a href=https://github.com/marc0777/NumericalIntegration>Github</a><br>"
                    "©Copyright 2019 </p>");
+    msgBox.setTextInteractionFlags(Qt::NoTextInteraction);
     msgBox.addButton(tr("Nice"), QMessageBox::AcceptRole);
     msgBox.exec();
 }// onAboutButtonPressed
