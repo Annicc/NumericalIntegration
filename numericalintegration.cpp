@@ -39,7 +39,7 @@ void NumericalIntegration::graphTrapezoidi() {
     out = 0;
     x = from;
     QLineSeries *trap = new QLineSeries();
-    trap->setName("Trapezioidi");
+    trap->setName("Trapezi");
     for (int i = 0; i < resolution; ++i) {
         double y1 = expression.value();
         x += delta;
