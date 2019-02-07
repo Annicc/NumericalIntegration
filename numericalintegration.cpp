@@ -80,9 +80,15 @@ void NumericalIntegration::setInterval(int from, int to) {
     this->to = to;
 }// setInterval
 
+void NumericalIntegration::setResolution(int res){
+    resolution = res;
+}// setResolution
+
+void NumericalIntegration::setGResolution(int gres){
+    gresolution = gres;
+}// setGResolution
+
 void NumericalIntegration::buildExpression() {
-    resolution = 10;
-    gresolution = 100;
     delta = (to-from)/resolution;
     gdelta = (to-from)/gresolution;
     out = 0;

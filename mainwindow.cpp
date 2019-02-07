@@ -21,12 +21,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     cbTrapezoidi = ui->checkTrapezoidi;
     cbSimpson = ui->checkSimpson;
 
+    resolution = ui->resInput;
+    gresolution = ui->gresInput;
+
     connect(runButton, SIGNAL(clicked()), this, SLOT(onRunButtonPressed()));
     connect(resetButton, SIGNAL(clicked()), this,SLOT(onResetButtonPressed()));
     connect(aboutButton, SIGNAL(clicked()), this,SLOT(onAboutButtonPressed()));
 
     chartView = ui->chartView;
     chartView->setRenderHint(QPainter::Antialiasing);
+    chartView->setRubberBand(QChartView::RectangleRubberBand);
 
     setWindowTitle(QCoreApplication::applicationName());
 }// MainWindow
@@ -57,6 +61,9 @@ void MainWindow::onRunButtonPressed() {
         std::string stdstring = expression.toUtf8().constData();
         ni->setExpression(stdstring);
         ni->setInterval(lowerLimit->text().toInt(), upperLimit->text().toInt());
+        ni->setResolution(resolution->text().toInt());
+        ni->setGResolution(gresolution->text().toInt());
+
         ni->buildExpression();
         ni->computeGraphs(cbExpression->isChecked(), cbRettangoli->isChecked(), cbTrapezoidi->isChecked(), cbSimpson->isChecked());
 

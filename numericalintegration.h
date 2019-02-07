@@ -44,6 +44,10 @@ public:
 
     void setInterval(int from, int to);
 
+    void setResolution(int res);
+
+    void setGResolution(int gres);
+
     void buildExpression();
 
     std::string getExpression();
