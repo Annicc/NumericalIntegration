@@ -29,11 +29,15 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     chartView->setRenderHint(QPainter::Antialiasing);
 
     setWindowTitle(QCoreApplication::applicationName());
-}
+}// MainWindow
 
 MainWindow::~MainWindow() {
     delete ui;
 }
+
+void MainWindow::setNi(NumericalIntegration* input){
+    ni = input;
+}// ~MainWindow
 
 void MainWindow::onRunButtonPressed() {
 
@@ -45,29 +49,28 @@ void MainWindow::onRunButtonPressed() {
         msgBox.setDefaultButton(QMessageBox::Ok);
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.exec();
+    } else {
+        QString expression;
+        expression = inputExpression->text();
+        std::string stdstring = expression.toUtf8().constData();
+        ni->setExpression(stdstring);
+        ni->setInterval(lowerLimit->text().toInt(), upperLimit->text().toInt());
+        ni->buildExpression();
+        ni->computeGraphs(cbExpression->isChecked(), cbRettangoli->isChecked(), cbTrapezoidi->isChecked(), cbSimpson->isChecked());
+
+        chartView->chart()->removeAllSeries(); // remove old chart
+        chartView->setChart(ni->getChart()); // add new chart
+        chartView->update();
+
+        resultDisplay->setPlainText(resultBuilder(
+                                        QString::fromStdString(ni->getExpression()),
+                                        QString::number(ni->getFrom()),
+                                        QString::number(ni->getTo()),
+                                        QString::number(ni->getOut())));
+
+        //resize to content
     }
-
-    // todo move ni to main.cpp
-    QString expression;
-    expression = inputExpression->text();
-    std::string stdstring = expression.toUtf8().constData();
-    ni->setExpression(stdstring);
-    ni->setInterval(lowerLimit->text().toInt(), upperLimit->text().toInt());
-    ni->buildExpression();
-    ni->computeGraphs(cbExpression->isChecked(), cbRettangoli->isChecked(), cbTrapezoidi->isChecked(), cbSimpson->isChecked());
-
-    chartView->chart()->removeAllSeries(); // remove old chart
-    chartView->setChart(ni->getChart()); // add new chart
-    chartView->update();
-
-    resultDisplay->setPlainText(resultBuilder(
-                                    QString::fromStdString(ni->getExpression()),
-                                    QString::number(ni->getFrom()),
-                                    QString::number(ni->getTo()),
-                                    QString::number(ni->getOut())));
-
-    //resize to content
-}
+}// onRunButtonPressed
 
 void MainWindow::onResetButtonPressed() {
 
@@ -86,7 +89,7 @@ void MainWindow::onResetButtonPressed() {
         chartView->update();
         resultDisplay->setPlainText(resultBuilder("", "", "", ""));
     }
-}
+}// onResetButtonPressed
 
 void MainWindow::onAboutButtonPressed(){
     QMessageBox msgBox;
@@ -96,8 +99,9 @@ void MainWindow::onAboutButtonPressed(){
                    "\tMarco Fincato");
     msgBox.setInformativeText("Github: https://github.com/marc0777/NumericalIntegration");
     msgBox.addButton(tr("nice"), QMessageBox::AcceptRole);
+    msgBox.setTextInteractionFlags(Qt::TextSelectableByMouse);
     msgBox.exec();
-}
+}// onAboutButtonPressed
 
 bool MainWindow::isUserInputCorrect(){
     // todo finish
@@ -105,7 +109,7 @@ bool MainWindow::isUserInputCorrect(){
         !inputExpression->text().isEmpty() ||
         !lowerLimit->text().isEmpty() ||
         !upperLimit->text().isEmpty();
-}
+}// isUserInputCorrect
 
 QString MainWindow::resultBuilder(QString expression, QString from, QString to, QString result){
     QString str;
@@ -114,4 +118,4 @@ QString MainWindow::resultBuilder(QString expression, QString from, QString to, 
     str.append("to: " + to + "\n");
     str.append("result: " + result);
     return str;
-}
+}// resultBuilder

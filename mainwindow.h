@@ -14,6 +14,7 @@ class MainWindow : public QMainWindow {
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void setNi(NumericalIntegration* input);
 private slots:
     void onRunButtonPressed();
     void onResetButtonPressed();

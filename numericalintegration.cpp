@@ -2,14 +2,14 @@
 
 NumericalIntegration::NumericalIntegration() {
     chart = new QChart();
-}
+}// NumericalIntegration
 
 void NumericalIntegration::computeGraphs(bool expression, bool rettangoli, bool trapezoidi, bool Simpson) {
     if(expression) graphExpression();
     if(rettangoli) graphRettangoli();
     if(trapezoidi) graphTrapezoidi();
     if(Simpson) graphSimpson();
-}
+}// computeGraphs
 
 void NumericalIntegration::graphExpression() {
     x = from;
@@ -20,7 +20,7 @@ void NumericalIntegration::graphExpression() {
         x+=gdelta;
     }
     chart->addSeries(graph);
-}
+}// graphExpression
 
 void NumericalIntegration::graphRettangoli() {
     x = from;
@@ -33,7 +33,7 @@ void NumericalIntegration::graphRettangoli() {
         x += delta;
     }
     chart->addSeries(rect);
-}
+}// graphRettangoli
 
 void NumericalIntegration::graphTrapezoidi() {
     out = 0;
@@ -48,7 +48,7 @@ void NumericalIntegration::graphTrapezoidi() {
         *trap << QPointF(x-delta, y1) << QPointF(x, y2);
     }
     chart->addSeries(trap);
-}
+}// graphTrapezoidi
 
 void NumericalIntegration::graphSimpson() {
     out = 0;
@@ -62,23 +62,23 @@ void NumericalIntegration::graphSimpson() {
     }
 
     out *= delta/3;
-}
+}// graphSimpson
 
 QChart* NumericalIntegration::getChart() {
     chart->createDefaultAxes();
     chart->setTitle(QString::fromStdString(expression_string));
     return chart;
-}
+}// getChart
 
 
 void NumericalIntegration::setExpression(std::string in) {
     expression_string = in;
-}
+}// setExpression
 
 void NumericalIntegration::setInterval(int from, int to) {
     this->from = from;
     this->to = to;
-}
+}// setInterval
 
 void NumericalIntegration::buildExpression() {
     // vars meme
@@ -92,20 +92,20 @@ void NumericalIntegration::buildExpression() {
     symbol_table.add_constants();
     expression.register_symbol_table(symbol_table);
     parser.compile(expression_string,expression);
-}
+}// buildExpression
 
 std::string NumericalIntegration::getExpression(){
     return expression_string;
-}
+}// getExpression
 
 double NumericalIntegration::getFrom(){
     return from;
-}
+}// getFrom
 
 double NumericalIntegration::getTo(){
     return to;
-}
+}// getTo
 
 double NumericalIntegration::getOut(){
     return out;
-}
+}// getOut
