@@ -56,8 +56,8 @@ private:
     QCheckBox *cbTrapezoidi;
     QCheckBox *cbSimpson;
 
-    QLineEdit *resolution;
-    QLineEdit *gresolution;
+    QSpinBox *resolution;
+    QSpinBox *gresolution;
 
     QChartView *chartView;
     QPushButton *runButton;

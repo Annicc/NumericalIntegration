@@ -63,8 +63,8 @@ void MainWindow::onRunButtonPressed() {
         std::string stdstring = expression.toUtf8().constData();
         ni->setExpression(stdstring);
         ni->setInterval(lowerLimit->text().toInt(), upperLimit->text().toInt());
-        ni->setResolution(resolution->text().toInt());
-        ni->setGResolution(gresolution->text().toInt());
+        ni->setResolution(resolution->value());
+        ni->setGResolution(gresolution->value());
 
         ni->buildExpression();
         ni->computeGraphs(cbExpression->isChecked(), cbRettangoli->isChecked(), cbTrapezoidi->isChecked(), cbSimpson->isChecked());
