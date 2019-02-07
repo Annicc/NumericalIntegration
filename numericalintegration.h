@@ -1,17 +1,14 @@
 #ifndef NUMERICALINTEGRATION_H
 #define NUMERICALINTEGRATION_H
 
+#include "expression.h"
+
 #include <QtCharts>
 #include <QtCharts/QChartView>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QSplineSeries>
 
-#include "exprtk.hpp"
 #include <iomanip>
-
-typedef exprtk::symbol_table<double> Symbols;
-typedef exprtk::expression<double> Expression;
-typedef exprtk::parser<double> Parser;
 
 class NumericalIntegration {
 public:
@@ -77,12 +74,10 @@ private:
     void graphSimpson();
 
     QChart *chart;
-    double from, to, x, delta, gdelta, gresolution, out;
+    double from, to, delta, gdelta, gresolution, out;
     int resolution;
     std::string expression_string;
-    Symbols symbol_table;
-    Expression expression;
-    Parser parser;
+    Expression *expression;
 };
 
 #endif // NUMERICALINTEGRATION_H
