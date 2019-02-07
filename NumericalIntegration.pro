@@ -15,8 +15,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 CONFIG += c++11
 
-QMAKE_CXXFLAGS += -bigobj
-
 SOURCES += \
         main.cpp \
     mainwindow.cpp \
@@ -31,6 +29,10 @@ HEADERS += \
 
 FORMS += \
     mainwindow.ui
+
+win32-msvc*{
+    QMAKE_CXXFLAGS += -bigobj
+}
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
