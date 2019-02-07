@@ -5,6 +5,8 @@
 #include <QtCharts>
 #include "numericalintegration.h"
 
+#include <iostream>
+
 namespace Ui {
     class MainWindow;
 }
@@ -15,16 +17,28 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void setNi(NumericalIntegration* input);
+
 private slots:
     void onRunButtonPressed();
     void onResetButtonPressed();
     void onAboutButtonPressed();
+
 private:
+
     /**
      * Checks whether the input is correct
      * @return true is the input is correct
      */
     bool isUserInputCorrect();
+
+    /**
+     * Creates a string with all the input and output of the mathematical operations.
+     * @param expression base mathematical expression
+     * @param from integral lower limit
+     * @param to integral higher limit
+     * @param result definite result of the integral
+     * @return a string with a lot of "\n"
+     */
     QString resultBuilder(QString expression, QString from, QString to, QString result);
 
     Ui::MainWindow *ui;

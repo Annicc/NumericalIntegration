@@ -50,6 +50,8 @@ void MainWindow::onRunButtonPressed() {
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.exec();
     } else {
+        chartView->chart()->removeAllSeries(); // remove old chart
+
         QString expression;
         expression = inputExpression->text();
         std::string stdstring = expression.toUtf8().constData();
@@ -58,7 +60,6 @@ void MainWindow::onRunButtonPressed() {
         ni->buildExpression();
         ni->computeGraphs(cbExpression->isChecked(), cbRettangoli->isChecked(), cbTrapezoidi->isChecked(), cbSimpson->isChecked());
 
-        chartView->chart()->removeAllSeries(); // remove old chart
         chartView->setChart(ni->getChart()); // add new chart
         chartView->update();
 
@@ -93,20 +94,19 @@ void MainWindow::onResetButtonPressed() {
 
 void MainWindow::onAboutButtonPressed(){
     QMessageBox msgBox;
-    msgBox.setText("Well.\n"
-                   "Authors:\n"
-                   "\tLuca Annicchiarico\n"
-                   "\tMarco Fincato");
-    msgBox.setInformativeText("Github: https://github.com/marc0777/NumericalIntegration");
-    msgBox.addButton(tr("nice"), QMessageBox::AcceptRole);
-    msgBox.setTextInteractionFlags(Qt::TextSelectableByMouse);
+    msgBox.setTextFormat(Qt::RichText);
+    msgBox.setText("<p>Authors:<br>"
+                   "    Luca Annicchiarico<br>"
+                   "    Marco Fincato<br></p>"
+                   "<p><a href=https://github.com/marc0777/NumericalIntegration>Github</a><br>"
+                   "©Copyright 2019 </p>");
+    msgBox.addButton(tr("Nice"), QMessageBox::AcceptRole);
     msgBox.exec();
 }// onAboutButtonPressed
 
 bool MainWindow::isUserInputCorrect(){
-    // todo finish
     return
-        !inputExpression->text().isEmpty() ||
+        !inputExpression->text().isEmpty() || // doesn't work on second run
         !lowerLimit->text().isEmpty() ||
         !upperLimit->text().isEmpty();
 }// isUserInputCorrect

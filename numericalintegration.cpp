@@ -81,7 +81,6 @@ void NumericalIntegration::setInterval(int from, int to) {
 }// setInterval
 
 void NumericalIntegration::buildExpression() {
-    // vars meme
     resolution = 10;
     gresolution = 100;
     delta = (to-from)/resolution;
