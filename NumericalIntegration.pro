@@ -19,13 +19,15 @@ SOURCES += \
         main.cpp \
     mainwindow.cpp \
     numericalintegration.cpp \
-    expression.cpp
+    expression.cpp \
+    nimethods.cpp
 
 HEADERS += \
     exprtk.hpp \
     mainwindow.h \
     numericalintegration.h \
-    expression.h
+    expression.h \
+    nimethods.h
 
 FORMS += \
     mainwindow.ui

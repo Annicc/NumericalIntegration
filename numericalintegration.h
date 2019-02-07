@@ -2,6 +2,7 @@
 #define NUMERICALINTEGRATION_H
 
 #include "expression.h"
+#include "nimethods.h"
 
 #include <QtCharts>
 #include <QtCharts/QChartView>
@@ -41,7 +42,7 @@ public:
 
     void setInterval(int from, int to);
 
-    void setResolution(int res);
+    void setResolution(unsigned int res);
 
     void setGResolution(int gres);
 
@@ -75,7 +76,7 @@ private:
 
     QChart *chart;
     double from, to, delta, gdelta, gresolution, out;
-    int resolution;
+    unsigned int resolution;
     std::string expression_string;
     Expression *expression;
 };

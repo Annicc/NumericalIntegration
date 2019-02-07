@@ -23,45 +23,23 @@ void NumericalIntegration::graphExpression() {
 }// graphExpression
 
 void NumericalIntegration::graphRettangoli() {
-    expression->setX(from);
-    QLineSeries *rect = new QLineSeries();
-    rect->setName("Rettangoli");
-    for (int i = 0; i < resolution; ++i) {
-        double y = expression->getY();
-        out += expression->getY() * delta;
-        *rect << QPointF(expression->getX(), y) << QPointF(expression->getX()+delta, y);
-        expression->addX(delta);
-    }
-    chart->addSeries(rect);
+    NIResult result = NIMethods::rectangle(expression, from, to, resolution);
+    QLineSeries *qline = new QLineSeries;
+    qline->setName("Rettangoli");
+    for (auto e : result.second) *qline << QPointF(e.first, e.second);
+    chart->addSeries(qline);
 }// graphRettangoli
 
 void NumericalIntegration::graphTrapezoidi() {
-    out = 0;
-    expression->setX(from);
-    QLineSeries *trap = new QLineSeries();
-    trap->setName("Trapezi");
-    for (int i = 0; i < resolution; ++i) {
-        double y1 = expression->getY();
-        expression->addX(delta);
-        double y2 = expression->getY();
-        out += (y1+y2)*delta/2;
-        *trap << QPointF(expression->getX()-delta, y1) << QPointF(expression->getX(), y2);
-    }
-    chart->addSeries(trap);
+    NIResult result = NIMethods::trapezoidal(expression, from, to, resolution);
+    QLineSeries *qline = new QLineSeries;
+    qline->setName("Trapezi");
+    for (auto e : result.second) *qline << QPointF(e.first, e.second);
+    chart->addSeries(qline);
 }// graphTrapezoidi
 
 void NumericalIntegration::graphSimpson() {
-    out = 0;
-    for (int i = 1; i <= resolution/2; ++i) {
-        expression->setX(from + (2 * i - 2) * delta);
-        out += expression->getY();
-        expression->setX(from + (2 * i - 1) * delta);
-        out += 4*expression->getY();
-        expression->setX(from + 2 * i * delta);
-        out += expression->getY();
-    }
-
-    out *= delta/3;
+    NIResult result = NIMethods::simpson(expression, from, to, resolution);
 }// graphSimpson
 
 QChart* NumericalIntegration::getChart() {
@@ -80,7 +58,7 @@ void NumericalIntegration::setInterval(int from, int to) {
     this->to = to;
 }// setInterval
 
-void NumericalIntegration::setResolution(int res){
+void NumericalIntegration::setResolution(unsigned int res){
     resolution = res;
 }// setResolution
 
