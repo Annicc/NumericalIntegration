@@ -22,6 +22,7 @@ private slots:
     void onRunButtonPressed();
     void onResetButtonPressed();
     void onAboutButtonPressed();
+    void onTheCancelButtonPressed();
 
 private:
 
@@ -63,7 +64,7 @@ private:
     QPushButton *resetButton;
 
     QPushButton *aboutButton;
-
+    QPushButton *theCancelButton; // easter egg time :-)
 };
 
 #endif // MAINWINDOW_H

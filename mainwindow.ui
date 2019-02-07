@@ -329,6 +329,19 @@
      </property>
     </widget>
    </widget>
+   <widget class="QPushButton" name="theCancelButton">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>670</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>The Cancel</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar">
    <property name="enabled">

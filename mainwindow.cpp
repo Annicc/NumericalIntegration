@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     runButton = ui->runButton;
     resetButton = ui->resetButton;
     aboutButton = ui->aboutButton;
+    theCancelButton = ui->theCancelButton;
 
     inputExpression = ui->expressionInput;
     upperLimit = ui->upperLimitInput;
@@ -27,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(runButton, SIGNAL(clicked()), this, SLOT(onRunButtonPressed()));
     connect(resetButton, SIGNAL(clicked()), this,SLOT(onResetButtonPressed()));
     connect(aboutButton, SIGNAL(clicked()), this,SLOT(onAboutButtonPressed()));
+    connect(theCancelButton, SIGNAL(clicked()), this,SLOT(onTheCancelButtonPressed()));
 
     chartView = ui->chartView;
     chartView->setRenderHint(QPainter::Antialiasing);
@@ -111,6 +113,34 @@ void MainWindow::onAboutButtonPressed(){
     msgBox.addButton(tr("Nice"), QMessageBox::AcceptRole);
     msgBox.exec();
 }// onAboutButtonPressed
+
+void MainWindow::onTheCancelButtonPressed(){
+    QMessageBox msgBox;
+    msgBox.setText("Are you sure you want to C̵̤̭̭̙̪̟͕͓̱̮͝ ̶̢̬̞̬͓͓̪̲̹̫͗̎̿͝ ̶̡̟̘͚͈̐͘ͅȂ̷̛̩̣̬̫̣͈̥̖͂͋̊̊̀̈̀̌ ̶͔͎̥͚̱̘̫̮͙̅̿̑̀̚͝ ̸̥͔̮̘̦͕̟̥̙̈́̒̊͂̽͜N̵͔͉͂̏ ̴̝̝͙̌̀̽̌̒͝ ̵̹̒̇̀̓̓̄͒̇̉̾C̸̢̾̈́̈́̽͆ ̴̱̘͇̮͆̈́̃͌͆͐̇͠ ̶̞̖̉̈͒͂͗̃͒̾̿͝E̵̡͚͍̗͌͊̈͘̚ ̷̪̘̤͚̇̉̐̽͋͊̐͋ ̸̲͕̮͔̤̮̪̥͌̐̚̕͘͜͝L̵̼̣̬̟͎͈̥͚̹̋̚͝ͅ ?");
+    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.setStandardButtons(QMessageBox::Cancel | QMessageBox::No);
+    msgBox.addButton(tr("please have mercy"), QMessageBox::DestructiveRole);
+    msgBox.setDefaultButton(QMessageBox::No);
+    int ret = msgBox.exec();
+
+    QMessageBox msgCancel;
+    QMessageBox msgPlease;
+    switch (ret) {
+        case QMessageBox::Cancel:
+            msgCancel.setText("You have successfully cancelled");
+            msgCancel.setStandardButtons(QMessageBox::Ok);
+            msgCancel.exec();
+        break;
+        case QMessageBox::No:
+            onTheCancelButtonPressed();
+        break;
+        default:
+            msgPlease.setText("I will 🆂  🅿  🅰  🆁  🅴 you");
+            msgPlease.addButton(tr("thank you master"), QMessageBox::AcceptRole);
+            msgPlease.exec();
+        break;
+    }
+}// onTheCancelButtonPressed
 
 bool MainWindow::isUserInputCorrect(){
     return
