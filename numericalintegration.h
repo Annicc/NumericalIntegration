@@ -15,13 +15,13 @@ typedef exprtk::parser<double> Parser;
 
 class NumericalIntegration {
 public:
-    /*
+    /**
      * @param title chart title
      */
     NumericalIntegration(QString title);
     void parseExpression();
 
-    /*
+    /**
      * This function uses the graphSomething functions
      * @param using graphExpression
      * @param using graphRettangoli
@@ -30,13 +30,13 @@ public:
      */
     void computeGraphs(bool expression, bool rettangoli, bool trapezoidi, bool Simpson);
 
-    /*
+    /**
      * Returns a chart containing the graphs requested in computeGraphs function
      * @returns a QChart chart
      */
     QChart* getChart(); // must use computeGraphs first
 
-    /*
+    /**
      * Sets the base expression.
      * @param in mathematical expression
      */
@@ -52,22 +52,22 @@ public:
     double getOut(); // lol nice name, temp tho
 
 private:
-    /*
+    /**
      * Creates base expression graph.
      */
     void graphExpression();
 
-    /*
+    /**
      * Creates graph with rettangoli method.
      */
     void graphRettangoli();
 
-    /*
+    /**
      * Creates graph with trapezoidi method.
      */
     void graphTrapezoidi();
 
-    /*
+    /**
      * Creates graph with Simpson method.
      */
     void graphSimpson();

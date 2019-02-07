@@ -204,6 +204,23 @@
      <string>Results:</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="aboutButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>500</y>
+      <width>61</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>About</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>icons/icon_info.svg</normaloff>icons/icon_info.svg</iconset>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar">
    <property name="enabled">

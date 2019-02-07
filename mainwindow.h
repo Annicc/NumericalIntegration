@@ -17,7 +17,13 @@ public:
 private slots:
     void onRunButtonPressed();
     void onResetButtonPressed();
+    void onAboutButtonPressed();
 private:
+    /**
+     * Checks whether the input is correct
+     * @return true is the input is correct
+     */
+    bool isUserInputCorrect();
     QString resultBuilder();
 
     Ui::MainWindow *ui;
@@ -37,6 +43,8 @@ private:
     QChartView *chartView;
     QPushButton *runButton;
     QPushButton *resetButton;
+
+    QPushButton *aboutButton;
 
 };
 

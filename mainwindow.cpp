@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     runButton = ui->runButton;
     resetButton = ui->resetButton;
+    aboutButton = ui->aboutButton;
 
     inputExpression = ui->expressionInput;
     upperLimit = ui->upperLimitInput;
@@ -21,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     connect(runButton, SIGNAL(clicked()), this, SLOT(onRunButtonPressed()));
     connect(resetButton, SIGNAL(clicked()), this,SLOT(onResetButtonPressed()));
+    connect(aboutButton, SIGNAL(clicked()), this,SLOT(onAboutButtonPressed()));
 
     chartView = ui->chartView;
     chartView->setRenderHint(QPainter::Antialiasing);
@@ -33,6 +35,17 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::onRunButtonPressed() {
+
+    // checking user input
+    if(!isUserInputCorrect()){
+        QMessageBox msgBox;
+        msgBox.setText("The inputted data is not correct.");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDefaultButton(QMessageBox::Ok);
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.exec();
+    }
+
     // todo move ni to main.cpp
     QString expression;
     expression = inputExpression->text();
@@ -57,6 +70,19 @@ void MainWindow::onResetButtonPressed() {
     lowerLimit->clear();
     chartView->chart()->removeAllSeries();
     chartView->update();
+}
+
+void MainWindow::onAboutButtonPressed(){
+
+}
+
+bool MainWindow::isUserInputCorrect(){
+    // todo finish
+    return
+        !inputExpression->text().isEmpty() ||
+        !lowerLimit->text().isEmpty() ||
+        !upperLimit->text().isEmpty() ||
+        upperLimit->text().toInt() > lowerLimit->text().toInt();
 }
 
 QString MainWindow::resultBuilder(){
