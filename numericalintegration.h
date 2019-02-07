@@ -18,7 +18,7 @@ public:
     /**
      * @param title chart title
      */
-    NumericalIntegration(QString title);
+    NumericalIntegration();
     void parseExpression();
 
     /**

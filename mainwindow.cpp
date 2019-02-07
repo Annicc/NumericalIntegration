@@ -3,7 +3,7 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
-    ni = new NumericalIntegration("sadfca");
+    ni = new NumericalIntegration();
 
     runButton = ui->runButton;
     resetButton = ui->resetButton;
@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     lowerLimit = ui->lowerLimitInput;
 
     resultDisplay = ui->resultView;
+    resultDisplay->setPlainText(resultBuilder("", "", "", ""));
 
     cbExpression = ui->checkExpression;
     cbRettangoli = ui->checkRettangoli;
@@ -59,21 +60,43 @@ void MainWindow::onRunButtonPressed() {
     chartView->setChart(ni->getChart()); // add new chart
     chartView->update();
 
-    resultDisplay->setPlainText(resultBuilder());
+    resultDisplay->setPlainText(resultBuilder(
+                                    QString::fromStdString(ni->getExpression()),
+                                    QString::number(ni->getFrom()),
+                                    QString::number(ni->getTo()),
+                                    QString::number(ni->getOut())));
 
     //resize to content
 }
 
 void MainWindow::onResetButtonPressed() {
-    inputExpression->clear();
-    upperLimit->clear();
-    lowerLimit->clear();
-    chartView->chart()->removeAllSeries();
-    chartView->update();
+
+    QMessageBox msgBox;
+    msgBox.setText("Do you want to reset?");
+    msgBox.setIcon(QMessageBox::Question);
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    msgBox.setDefaultButton(QMessageBox::No);
+    int ret = msgBox.exec();
+
+    if(ret == QMessageBox::Yes){
+        inputExpression->clear();
+        upperLimit->clear();
+        lowerLimit->clear();
+        chartView->chart()->removeAllSeries();
+        chartView->update();
+        resultDisplay->setPlainText(resultBuilder("", "", "", ""));
+    }
 }
 
 void MainWindow::onAboutButtonPressed(){
-
+    QMessageBox msgBox;
+    msgBox.setText("Well.\n"
+                   "Authors:\n"
+                   "\tLuca Annicchiarico\n"
+                   "\tMarco Fincato");
+    msgBox.setInformativeText("Github: https://github.com/marc0777/NumericalIntegration");
+    msgBox.addButton(tr("nice"), QMessageBox::AcceptRole);
+    msgBox.exec();
 }
 
 bool MainWindow::isUserInputCorrect(){
@@ -81,15 +104,14 @@ bool MainWindow::isUserInputCorrect(){
     return
         !inputExpression->text().isEmpty() ||
         !lowerLimit->text().isEmpty() ||
-        !upperLimit->text().isEmpty() ||
-        upperLimit->text().toInt() > lowerLimit->text().toInt();
+        !upperLimit->text().isEmpty();
 }
 
-QString MainWindow::resultBuilder(){
-    QString result;
-    result.append("expression: " + QString::fromStdString(ni->getExpression()) + "\n");
-    result.append("from: " + QString::number(ni->getFrom()) + "\n");
-    result.append("to: " + QString::number(ni->getTo()) + "\n");
-    result.append("result: " + QString::number(ni->getOut()));
-    return result;
+QString MainWindow::resultBuilder(QString expression, QString from, QString to, QString result){
+    QString str;
+    str.append("expression: " + expression + "\n");
+    str.append("from: " + from + "\n");
+    str.append("to: " + to + "\n");
+    str.append("result: " + result);
+    return str;
 }

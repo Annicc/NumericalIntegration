@@ -1,9 +1,7 @@
 #include "numericalintegration.h"
 
-NumericalIntegration::NumericalIntegration(QString title) {
+NumericalIntegration::NumericalIntegration() {
     chart = new QChart();
-    chart->setTitle(title);
-
 }
 
 void NumericalIntegration::computeGraphs(bool expression, bool rettangoli, bool trapezoidi, bool Simpson) {
@@ -68,6 +66,7 @@ void NumericalIntegration::graphSimpson() {
 
 QChart* NumericalIntegration::getChart() {
     chart->createDefaultAxes();
+    chart->setTitle(QString::fromStdString(expression_string));
     return chart;
 }
 

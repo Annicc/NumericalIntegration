@@ -24,7 +24,7 @@ private:
      * @return true is the input is correct
      */
     bool isUserInputCorrect();
-    QString resultBuilder();
+    QString resultBuilder(QString expression, QString from, QString to, QString result);
 
     Ui::MainWindow *ui;
     NumericalIntegration *ni;
