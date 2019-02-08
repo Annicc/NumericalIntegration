@@ -40,7 +40,7 @@ public:
      */
     void setExpression(std::string in);
 
-    void setInterval(int from, int to);
+    void setInterval(double from, double to);
 
     void setResolution(unsigned int res);
 
@@ -51,7 +51,9 @@ public:
     std::string getExpression();
     double getFrom();
     double getTo();
-    double getOut(); // lol nice name, temp tho
+    double getRectangleOut();
+    double getTrapezoidalOut();
+    double getSimpsonOut();
 
 private:
     /**
@@ -62,12 +64,12 @@ private:
     /**
      * Creates graph with rettangoli method.
      */
-    void graphRettangoli();
+    void graphRectangle();
 
     /**
      * Creates graph with trapezoidi method.
      */
-    void graphTrapezoidi();
+    void graphTrapezoidal();
 
     /**
      * Creates graph with Simpson method.
@@ -75,7 +77,7 @@ private:
     void graphSimpson();
 
     QChart *chart;
-    double from, to, delta, gdelta, gresolution, out;
+    double from, to, delta, gdelta, gresolution, rectangleOut, trapezoidalOut, simpsonOut;
     unsigned int resolution;
     std::string expression_string;
     Expression *expression;

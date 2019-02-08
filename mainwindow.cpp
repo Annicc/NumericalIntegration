@@ -14,8 +14,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     upperLimit = ui->upperLimitInput;
     lowerLimit = ui->lowerLimitInput;
 
-    resultDisplay = ui->resultView;
-    resultDisplay->setPlainText(resultBuilder("", "", "", ""));
+    resExpression = ui->resExpression;
+    resFrom = ui->resFrom;
+    resTo = ui->resTo;
+    resRectangle = ui->resRectangle;
+    resTrapezoidal = ui->resTrapezoidal;
+    resSimspon = ui->resSimpson;
 
     cbExpression = ui->checkExpression;
     cbRettangoli = ui->checkRettangoli;
@@ -62,7 +66,7 @@ void MainWindow::onRunButtonPressed() {
         expression = inputExpression->text();
         std::string stdstring = expression.toUtf8().constData();
         ni->setExpression(stdstring);
-        ni->setInterval(lowerLimit->text().toInt(), upperLimit->text().toInt());
+        ni->setInterval(lowerLimit->value(), upperLimit->value());
         ni->setResolution(resolution->value());
         ni->setGResolution(gresolution->value());
 
@@ -72,18 +76,11 @@ void MainWindow::onRunButtonPressed() {
         chartView->setChart(ni->getChart()); // add new chart
         chartView->update();
 
-        resultDisplay->setPlainText(resultBuilder(
-                                        QString::fromStdString(ni->getExpression()),
-                                        QString::number(ni->getFrom()),
-                                        QString::number(ni->getTo()),
-                                        QString::number(ni->getOut())));
-
-        //resize to content
+        buildResult();
     }
 }// onRunButtonPressed
 
 void MainWindow::onResetButtonPressed() {
-
     QMessageBox msgBox;
     msgBox.setText("Do you want to reset?");
     msgBox.setIcon(QMessageBox::Question);
@@ -95,20 +92,26 @@ void MainWindow::onResetButtonPressed() {
         inputExpression->clear();
         upperLimit->clear();
         lowerLimit->clear();
+        resExpression->clear();
+        resFrom->clear();
+        resTo->clear();
+        resRectangle->clear();
+        resTrapezoidal->clear();
+        resSimspon->clear();
         chartView->chart()->removeAllSeries();
         chartView->update();
-        resultDisplay->setPlainText(resultBuilder("", "", "", ""));
     }
 }// onResetButtonPressed
 
 void MainWindow::onAboutButtonPressed(){
     QMessageBox msgBox;
     msgBox.setTextFormat(Qt::RichText);
-    msgBox.setText("<p>Authors:<br>"
-                   "    Luca Annicchiarico<br>"
-                   "    Marco Fincato<br></p>"
-                   "<p><a href=https://github.com/marc0777/NumericalIntegration>Github</a><br>"
-                   "©Copyright 2019 </p>");
+    msgBox.setText("Authors:<br>"
+                   "<a href=https://github.com/annicc>Luca Annicchiarico</a><br>"
+                   "<a href=https://github.com/marc0777>Marco Fincato</a><br>"
+                   "<br>"
+                   "<a href=https://github.com/marc0777/NumericalIntegration>Github</a><br>"
+                   "©Copyright 2019");
     msgBox.setTextInteractionFlags(Qt::NoTextInteraction);
     msgBox.addButton(tr("Nice"), QMessageBox::AcceptRole);
     msgBox.exec();
@@ -149,11 +152,13 @@ bool MainWindow::isUserInputCorrect(){
         !upperLimit->text().isEmpty();
 }// isUserInputCorrect
 
-QString MainWindow::resultBuilder(QString expression, QString from, QString to, QString result){
-    QString str;
-    str.append("expression: " + expression + "\n");
-    str.append("from: " + from + "\n");
-    str.append("to: " + to + "\n");
-    str.append("result: " + result);
-    return str;
+void MainWindow::buildResult(){
+    resExpression->setText(QString::fromStdString(ni->getExpression()));
+    resFrom->setText(QString::number(ni->getFrom()));
+    resTo->setText(QString::number(ni->getTo()));
+
+
+    resRectangle->setText(QString::number(ni->getRectangleOut()));
+    resTrapezoidal->setText(QString::number(ni->getTrapezoidalOut()));
+    resSimspon->setText(QString::number(ni->getSimpsonOut()));
 }// resultBuilder

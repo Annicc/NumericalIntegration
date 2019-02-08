@@ -32,29 +32,26 @@ private:
      */
     bool isUserInputCorrect();
 
-    /**
-     * Creates a string with all the input and output of the mathematical operations.
-     * @param expression base mathematical expression
-     * @param from integral lower limit
-     * @param to integral higher limit
-     * @param result definite result of the integral
-     * @return a string with a lot of "\n"
-     */
-    QString resultBuilder(QString expression, QString from, QString to, QString result);
+    void buildResult();
 
     Ui::MainWindow *ui;
     NumericalIntegration *ni;
 
     QLineEdit *inputExpression;
-    QLineEdit *upperLimit;
-    QLineEdit *lowerLimit;
-
-    QTextEdit *resultDisplay;
+    QDoubleSpinBox *upperLimit;
+    QDoubleSpinBox *lowerLimit;
 
     QCheckBox *cbExpression;
     QCheckBox *cbRettangoli;
     QCheckBox *cbTrapezoidi;
     QCheckBox *cbSimpson;
+
+    QLineEdit *resExpression;
+    QLineEdit *resFrom;
+    QLineEdit *resTo;
+    QLineEdit *resRectangle;
+    QLineEdit *resTrapezoidal;
+    QLineEdit *resSimspon;
 
     QSpinBox *resolution;
     QSpinBox *gresolution;

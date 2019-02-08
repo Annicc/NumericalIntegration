@@ -26,7 +26,10 @@
      <height>531</height>
     </size>
    </property>
-   <layout class="QGridLayout" name="gridLayout">
+   <layout class="QVBoxLayout" name="verticalLayout_4">
+    <property name="spacing">
+     <number>0</number>
+    </property>
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -39,13 +42,15 @@
     <property name="bottomMargin">
      <number>0</number>
     </property>
-    <property name="spacing">
-     <number>0</number>
-    </property>
-    <item row="0" column="0">
+    <item>
      <widget class="QChartView" name="chartView">
       <property name="enabled">
        <bool>true</bool>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>1</pointsize>
+       </font>
       </property>
       <property name="cursor" stdset="0">
        <cursorShape>CrossCursor</cursorShape>
@@ -60,28 +65,165 @@
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-  </widget>
   <widget class="QDockWidget" name="dockWidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <property name="minimumSize">
     <size>
-     <width>282</width>
-     <height>787</height>
+     <width>202</width>
+     <height>626</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>524287</width>
+     <height>626</height>
     </size>
    </property>
    <property name="features">
     <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
    </property>
+   <property name="allowedAreas">
+    <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>Control panel</string>
+   </property>
    <attribute name="dockWidgetArea">
     <number>1</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents">
-    <layout class="QGridLayout" name="gridLayout_2">
-     <item row="1" column="1">
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <property name="leftMargin">
+      <number>9</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QGroupBox" name="functionBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>125</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>Function input</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <widget class="QLabel" name="integral">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>40</y>
+          <width>36</width>
+          <height>52</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>32</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>∫ </string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="expressionInput">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>60</y>
+          <width>113</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="upperLimitInput">
+        <property name="geometry">
+         <rect>
+          <x>21</x>
+          <y>20</y>
+          <width>71</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="decimals">
+         <number>5</number>
+        </property>
+        <property name="minimum">
+         <double>-10000000000.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>10000000000.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.100000000000000</double>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="lowerLimitInput">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>100</y>
+          <width>71</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="readOnly">
+         <bool>false</bool>
+        </property>
+        <property name="decimals">
+         <number>5</number>
+        </property>
+        <property name="minimum">
+         <double>-10000000000.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>10000000000.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.100000000000000</double>
+        </property>
+        <property name="value">
+         <double>0.000000000000000</double>
+        </property>
+       </widget>
+      </widget>
+     </item>
+     <item>
       <widget class="QGroupBox" name="displayBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="title">
         <string>Display settings</string>
        </property>
@@ -89,6 +231,12 @@
         <bool>true</bool>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
+        <property name="topMargin">
+         <number>3</number>
+        </property>
+        <property name="bottomMargin">
+         <number>3</number>
+        </property>
         <item>
          <widget class="QCheckBox" name="checkExpression">
           <property name="text">
@@ -132,8 +280,14 @@
        </layout>
       </widget>
      </item>
-     <item row="2" column="1">
-      <widget class="QGroupBox" name="AdvancedBox">
+     <item>
+      <widget class="QGroupBox" name="advancedBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -146,7 +300,13 @@
        <property name="flat">
         <bool>true</bool>
        </property>
-       <layout class="QGridLayout" name="gridLayout_3">
+       <layout class="QFormLayout" name="formLayout_2">
+        <property name="topMargin">
+         <number>3</number>
+        </property>
+        <property name="bottomMargin">
+         <number>3</number>
+        </property>
         <item row="0" column="0">
          <widget class="QLabel" name="resLabel">
           <property name="text">
@@ -187,76 +347,21 @@
        </layout>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QGroupBox" name="functionBox">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>125</height>
-        </size>
+     <item>
+      <widget class="QWidget" name="executionWidget" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
-       <property name="title">
-        <string>Function input</string>
-       </property>
-       <property name="flat">
-        <bool>true</bool>
-       </property>
-       <property name="checkable">
-        <bool>false</bool>
-       </property>
-       <widget class="QLineEdit" name="upperLimitInput">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>20</y>
-          <width>61</width>
-          <height>20</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lowerLimitInput">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>100</y>
-          <width>61</width>
-          <height>20</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLabel" name="integral">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>40</y>
-          <width>36</width>
-          <height>52</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>32</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>∫ </string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="expressionInput">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>60</y>
-          <width>113</width>
-          <height>20</height>
-         </rect>
-        </property>
-       </widget>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QWidget" name="widget" native="true">
        <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <property name="topMargin">
+         <number>3</number>
+        </property>
+        <property name="bottomMargin">
+         <number>3</number>
+        </property>
         <item>
          <widget class="QPushButton" name="runButton">
           <property name="text">
@@ -274,9 +379,144 @@
        </layout>
       </widget>
      </item>
-     <item row="6" column="1">
-      <widget class="QWidget" name="widget_2" native="true">
+     <item>
+      <widget class="QGroupBox" name="resultsBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="title">
+        <string>Results</string>
+       </property>
+       <layout class="QFormLayout" name="formLayout">
+        <property name="topMargin">
+         <number>3</number>
+        </property>
+        <property name="bottomMargin">
+         <number>3</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="rexExpressionLabel">
+          <property name="text">
+           <string>Expression: </string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="resExpression">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="resFromLabel">
+          <property name="text">
+           <string>From: </string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="resFrom">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="resToLabel">
+          <property name="text">
+           <string>To: </string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="resTo">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="resRectangleLabel">
+          <property name="text">
+           <string>Rectangle:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLineEdit" name="resRectangle">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="resTrapezoidalLabel">
+          <property name="text">
+           <string>Trapeoidal:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLineEdit" name="resTrapezoidal">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="resSimpsonLabel">
+          <property name="text">
+           <string>Simpson:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLineEdit" name="resSimpson">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="informationWidget" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="topMargin">
+         <number>3</number>
+        </property>
+        <property name="bottomMargin">
+         <number>3</number>
+        </property>
         <item>
          <widget class="QPushButton" name="aboutButton">
           <property name="text">
@@ -292,28 +532,6 @@
          <widget class="QPushButton" name="theCancelButton">
           <property name="text">
            <string>The Cancel</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <widget class="QGroupBox" name="groupBox_4">
-       <property name="title">
-        <string>Results</string>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_4">
-        <item row="0" column="0">
-         <widget class="QTextEdit" name="resultView">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::NoFrame</enum>
-          </property>
-          <property name="readOnly">
-           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -336,13 +554,22 @@
   <tabstop>lowerLimitInput</tabstop>
   <tabstop>upperLimitInput</tabstop>
   <tabstop>checkExpression</tabstop>
-  <tabstop>checkTrapezoidi</tabstop>
-  <tabstop>checkRettangoli</tabstop>
   <tabstop>checkSimpson</tabstop>
   <tabstop>resInput</tabstop>
   <tabstop>gresInput</tabstop>
-  <tabstop>resultView</tabstop>
   <tabstop>chartView</tabstop>
+  <tabstop>runButton</tabstop>
+  <tabstop>resetButton</tabstop>
+  <tabstop>aboutButton</tabstop>
+  <tabstop>theCancelButton</tabstop>
+  <tabstop>resExpression</tabstop>
+  <tabstop>resFrom</tabstop>
+  <tabstop>resTo</tabstop>
+  <tabstop>resRectangle</tabstop>
+  <tabstop>resTrapezoidal</tabstop>
+  <tabstop>resSimpson</tabstop>
+  <tabstop>checkTrapezoidi</tabstop>
+  <tabstop>checkRettangoli</tabstop>
  </tabstops>
  <resources/>
  <connections/>

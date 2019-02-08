@@ -6,8 +6,8 @@ NumericalIntegration::NumericalIntegration() {
 
 void NumericalIntegration::computeGraphs(bool expression, bool rettangoli, bool trapezoidi, bool Simpson) {
     if(expression) graphExpression();
-    if(rettangoli) graphRettangoli();
-    if(trapezoidi) graphTrapezoidi();
+    if(rettangoli) graphRectangle();
+    if(trapezoidi) graphTrapezoidal();
     if(Simpson) graphSimpson();
 }// computeGraphs
 
@@ -22,24 +22,27 @@ void NumericalIntegration::graphExpression() {
     chart->addSeries(graph);
 }// graphExpression
 
-void NumericalIntegration::graphRettangoli() {
+void NumericalIntegration::graphRectangle() {
     NIResult result = NIMethods::rectangle(expression, from, to, resolution);
+    rectangleOut = result.first;
     QLineSeries *qline = new QLineSeries;
     qline->setName("Rettangoli");
     for (auto e : result.second) *qline << QPointF(e.first, e.second);
     chart->addSeries(qline);
-}// graphRettangoli
+}// graphRectangle
 
-void NumericalIntegration::graphTrapezoidi() {
+void NumericalIntegration::graphTrapezoidal() {
     NIResult result = NIMethods::trapezoidal(expression, from, to, resolution);
+    trapezoidalOut = result.first;
     QLineSeries *qline = new QLineSeries;
     qline->setName("Trapezi");
     for (auto e : result.second) *qline << QPointF(e.first, e.second);
     chart->addSeries(qline);
-}// graphTrapezoidi
+}// graphTrapezoidal
 
 void NumericalIntegration::graphSimpson() {
     NIResult result = NIMethods::simpson(expression, from, to, resolution);
+    simpsonOut = result.first;
 }// graphSimpson
 
 QChart* NumericalIntegration::getChart() {
@@ -53,7 +56,7 @@ void NumericalIntegration::setExpression(std::string in) {
     expression_string = in;
 }// setExpression
 
-void NumericalIntegration::setInterval(int from, int to) {
+void NumericalIntegration::setInterval(double from, double to) {
     this->from = from;
     this->to = to;
 }// setInterval
@@ -69,7 +72,6 @@ void NumericalIntegration::setGResolution(int gres){
 void NumericalIntegration::buildExpression() {
     delta = (to-from)/resolution;
     gdelta = (to-from)/gresolution;
-    out = 0;
 
     expression = new Expression(expression_string);
 
@@ -87,6 +89,14 @@ double NumericalIntegration::getTo(){
     return to;
 }// getTo
 
-double NumericalIntegration::getOut(){
-    return out;
-}// getOut
+double NumericalIntegration::getRectangleOut(){
+    return rectangleOut;
+}// getRectangleOut
+
+double NumericalIntegration::getTrapezoidalOut(){
+    return trapezoidalOut;
+}// getTrapezoidalOut
+
+double NumericalIntegration::getSimpsonOut(){
+    return simpsonOut;
+}// getSimpsonOut
