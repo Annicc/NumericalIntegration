@@ -7,4 +7,4 @@ It was developed with Qt Creator, uses Qt UI Framewiok and datatypes, uses [expr
 The program can be installed thorugh the Windows installer in the relese section of this repository.
   
 ## Screenshots
-![Example Screenshot](Screenshot/NI1.png)
+![Example Screenshot](Screenshots/NI1.png)
